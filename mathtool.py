@@ -1,8 +1,8 @@
 import sys
 import math
 MAX_VALUE = 10000
-args_count = len(sys.argv) - 1
-text_heip = (
+
+text_help = (
         "mathtool — решение уравнений вида A*x^2 + B*x + C = 0\n"
         "Использование:\n"
         "    python mathtool.py                         вывод справки\n"
@@ -11,6 +11,18 @@ text_heip = (
         "    python mathtool.py solve -a 1 -b -3 -c 2   решение с заданными коэффициентами\n"
         "Коэффициенты A, B, C — целые числа, по модулю не превышающие 10000."
     )
-if args_count == 0 or sys.argv[1] == '--help':
-    print(text_heip)
-    sys.exit(0)
+print(text_help)
+user_input = input("Введите команду и числа: ")
+parts = user_input.split
+
+if parts[0] == "--help":
+    print(text_help)
+
+if len(parts) == 1 and parts[0] == "solve":
+   A = int(input("Введите А"))
+   B = int(input("Введите B"))
+   C = int(input("Введите C"))
+
+if parts[0] != "solve" and parts[0] != "--help":
+    print("Ошибка, неизвестная команда")
+    
