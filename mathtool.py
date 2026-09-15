@@ -13,15 +13,15 @@ text_help = (
     )
 print(text_help)
 user_input = input("Введите команду и числа: ")
-parts = user_input.split
+parts = user_input.split()
 
 if user_input == "--help":
     print(text_help)
 
 if len(parts) == 1 and user_input == "solve":
-   A = int(input("Введите А"))
-   B = int(input("Введите B"))
-   C = int(input("Введите C"))
+   A = int(input("Введите А:"))
+   B = int(input("Введите B:"))
+   C = int(input("Введите C:"))
 
 if user_input != "solve" and user_input != "--help":
     print("Ошибка, неизвестная команда")
