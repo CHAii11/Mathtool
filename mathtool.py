@@ -49,7 +49,7 @@ elif user[0] == 'solve':
             B = user[4]
             C = user[6]
         else:
-            print('Ошибка: неверный набор чисел', file=sys.stderr)
+            print('Ошибка: неверный набор параметров', file=sys.stderr)
             sys.exit(1)
 else:
         print('Ошибка: неизвестная команда', file=sys.stderr)
