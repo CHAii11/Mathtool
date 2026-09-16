@@ -21,3 +21,27 @@ if args[0] != 'solve': #если ввели не то что нужно
     print('Ошибка: неизвестная команда', file=sys.stderr)
     sys.exit(1)
 
+if len(args) == 1:  #если ввели только solve, просим числа
+    try:
+        A = int(input('Введите A:'))
+    except ValueError:
+        print('Ошибка: это не является числом',file=sys.stderr)
+        sys.exit(1)
+    try:
+            B = int(input('Введите B:'))
+    except ValueError:
+        print('Ошибка: это не является числом',file=sys.stderr)
+        sys.exit(1)
+    try:
+        C = int(input('Введите C:'))
+    except ValueError:
+        print('Ошибка: это не является числом', file=sys.stderr)
+        sys.exit(1)
+elif len(args) == 7 and args[1] == '-a' and args[3] == '-b' and args[5] == '-c': #запоминаем введенное 
+    A = args[2]
+    B = args[4]
+    C = args[6]
+else:
+    print('Ошибка: неверный набор чисел', file=sys.stderr)
+    sys.exit(1)
+
