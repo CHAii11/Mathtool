@@ -45,3 +45,14 @@ else:
     print('Ошибка: неверный набор чисел', file=sys.stderr)
     sys.exit(1)
 
+try:  #переводим в числа
+    a = int(A)
+    b = int(B)
+    c = int(C)
+except ValueError:
+    print('Ошибка: заданный коэффициент не является числом', file=sys.stderr)
+    sys.exit(1)
+
+if abs(a) > MAX_VALUE or abs(b) > MAX_VALUE or abs(c) > MAX_VALUE:  #проверка
+     print('Ошибка: число вне допустимого диапазона', file=sys.stderr)
+     sys.exit(1)
