@@ -13,44 +13,54 @@ text_help = (
 args = sys.argv[1:] 
 
 
-if len(args) == 0 or args[0] == '--help': #вывод справки во всех возможных случаях
+if len(args) == 0:
+    print(text_help)  #cразу выводим справку
+    
+user_input = input('Введите команду: ')
+user = user_input.split()
+    
+if len(user) == 0:
+    print('Вы ничего не ввели', file=sys.stderr)
+    sys.exit(1)
+        
+if user[0] == '--help':
     print(text_help)
     sys.exit(0)
-
-if args[0] != 'solve': #если ввели не то что нужно 
-    print('Ошибка: неизвестная команда', file=sys.stderr)
-    sys.exit(1)
-
-if len(args) == 1:  #если ввели только solve, просим числа
-    try:
-        A = int(input('Введите A:'))
-    except ValueError:
-        print('Ошибка: это не является числом',file=sys.stderr)
-        sys.exit(1)
-    try:
-            B = int(input('Введите B:'))
-    except ValueError:
-        print('Ошибка: это не является числом',file=sys.stderr)
-        sys.exit(1)
-    try:
-        C = int(input('Введите C:'))
-    except ValueError:
-        print('Ошибка: это не является числом', file=sys.stderr)
-        sys.exit(1)
-elif len(args) == 7 and args[1] == '-a' and args[3] == '-b' and args[5] == '-c': #запоминаем введенное 
-    A = args[2]
-    B = args[4]
-    C = args[6]
+        
+elif user[0] == 'solve':
+        #вариант 1 пользователь ввел только solve, то запрашиваем числа поочередно
+        if len(user) == 1:
+            try: 
+                A = int(input('Введите A: '))
+            except ValueError: 
+                print('Ошибка: это не число', file=sys.stderr); sys.exit(1)
+            try: 
+                B = int(input('Введите B: '))
+            except ValueError: 
+                print('Ошибка: это не число', file=sys.stderr); sys.exit(1)
+            try: 
+                C = int(input('Введите C: '))
+            except ValueError: 
+                print('Ошибка: это не число', file=sys.stderr); sys.exit(1)
+            
+        #вариант 2 пользователь ввел solve с аргументами
+        elif len(user) == 7 and user[1] == '-a' and user[3] == '-b' and user[5] == '-c':
+            A = user[2]
+            B = user[4]
+            C = user[6]
+        else:
+            print('Ошибка: неверный набор чисел', file=sys.stderr)
+            sys.exit(1)
 else:
-    print('Ошибка: неверный набор чисел', file=sys.stderr)
-    sys.exit(1)
+        print('Ошибка: неизвестная команда', file=sys.stderr)
+        sys.exit(1)
 
 try:  #переводим в числа
     a = int(A)
     b = int(B)
     c = int(C)
 except ValueError:
-    print('Ошибка: заданный коэффициент не является числом', file=sys.stderr)
+    print('Ошибка: заданный аргумент не является числом', file=sys.stderr)
     sys.exit(1)
 
 if abs(a) > MAX_VALUE or abs(b) > MAX_VALUE or abs(c) > MAX_VALUE:  #проверка
@@ -59,24 +69,25 @@ if abs(a) > MAX_VALUE or abs(b) > MAX_VALUE or abs(c) > MAX_VALUE:  #прове�
 
 if a == 0:
     if b != 0:
-        print('Уравнение линейное')
+        print('Линейное')
         x = -c / b
-        print('x = ', round(x, 3))
+        print(f"x = {x:.3f}")
     else:
         print('Ошибка: это не уравнение', file=sys.stderr)
         sys.exit(1)
 else:
-    print('Уравнение квадратное')
+    print('Квадратное')
     d = b * b - 4 * a * c
     print('D =', d)
 
     if d > 0:
         x1 = (-b + math.sqrt(d)) / (2 * a)
         x2 = (-b - math.sqrt(d)) / (2 * a)
-        print('x1 =', round(x1, 3))
-        print('x2 =', round(x2, 3))
+        print(f"x1 = {x1:.3f}")
+        print(f"x2 = {x2:.3f}")
+
     elif d == 0:
         x = -b / (2 * a)
-        print('x =', round(x, 3))
+        print(f"x = {x:.3f}")
     else:
         print('Действительных корней нет')
