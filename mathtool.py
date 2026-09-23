@@ -12,24 +12,13 @@ text_help = (
     )
 args = sys.argv[1:] 
 
-
-if len(args) == 0:
-    print(text_help)  #cразу выводим справку
-    
-user_input = input('Введите команду: ')
-user = user_input.split()
-    
-if len(user) == 0:
-    print('Вы ничего не ввели', file=sys.stderr)
-    sys.exit(1)
+if len(args) == 0 or args[0] == '--help': 
+    print(text_help) 
+    sys.exit(0) 
         
-if user[0] == '--help':
-    print(text_help)
-    sys.exit(0)
-        
-elif user[0] == 'solve':
+elif args[0] == 'solve':
         #вариант 1 пользователь ввел только solve, то запрашиваем числа поочередно
-        if len(user) == 1:
+        if len(args) == 1:
             try: 
                 A = int(input('Введите A: '))
             except ValueError: 
@@ -44,10 +33,10 @@ elif user[0] == 'solve':
                 print('Ошибка: это не число', file=sys.stderr); sys.exit(1)
             
         #вариант 2 пользователь ввел solve с аргументами
-        elif len(user) == 7 and user[1] == '-a' and user[3] == '-b' and user[5] == '-c':
-            A = user[2]
-            B = user[4]
-            C = user[6]
+        elif len(args) == 7 and args[1] == '-a' and args[3] == '-b' and args[5] == '-c':
+            A = args[2]
+            B = args[4]
+            C = args[6]
         else:
             print('Ошибка: неверный набор параметров', file=sys.stderr)
             sys.exit(1)
