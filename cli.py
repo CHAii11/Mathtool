@@ -14,9 +14,9 @@ def build_parser(): # Создаём главный разборщик
         "solve",
         help="решение уравнения A*x^2 + B*x + C = 0",
         allow_abbrev=False)
-    solve_parser.add_argument("-a", type=int, help="коэффициент A (целое, |A| <= 10000)")
-    solve_parser.add_argument("-b", type=int, help="коэффициент B (целое, |B| <= 10000)")
-    solve_parser.add_argument("-c", type=int, help="коэффициент C (целое, |C| <= 10000)")
+    solve_parser.add_argument("-a", type=int, help="коэффициент A")
+    solve_parser.add_argument("-b", type=int, help="коэффициент B")
+    solve_parser.add_argument("-c", type=int, help="коэффициент C")
     
     # Команда stats
     stats_parser = subparsers.add_parser(
