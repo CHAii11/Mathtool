@@ -84,7 +84,7 @@ def handle_integrate(args):
     if not (1 <= args.steps <= integration.MAX_STEPS):
         raise ValueError("число шагов вне диапазона")
     
-    result = integration.integrate(func, args.start, args.upper, args.steps)
+    result = integration.integrate(func, args.start, args.to, args.steps)
     
     print(f"Интеграл: {result:.{integration.DIGITS}f}")
     
