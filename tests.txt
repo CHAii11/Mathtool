@@ -1,20 +1,24 @@
-•	вызов справки — при запуске без параметров и с параметром --help;
-вводим "--help" и ""
-•	указание неизвестной команды вместо solve;
-вводим "abc"
-•	неверный набор параметров — пропущенный, лишний или неизвестный параметр;
-вводим "solve -a"
-•	исходные данные не являются числами;
-вводим "solve -a abc -b 1 -c 1"
-•	исходные данные выходят за допустимый диапазон;
-вводим "solve -a 100000 -b 1 -c 1"
-•	квадратное уравнение с двумя корнями;
-вводим "solve -a 1 -b -3 -c 2"
-•	квадратное уравнение с одним корнем;
-вводим "solve -a 1 -b -2 -c 1"
-•	квадратное уравнение без действительных корней;
-вводим "solve -a 1 -b 0 -c 5"
-•	линейное уравнение с одним корнем;
-вводим "solve -a 0 -b 2 -c -4"
-•	A = 0 и B = 0 — неизвестного нет, уравнения не существует при любом C; сообщение об ошибке и код возврата 1.
-вводим "solve -a 0 -b 0 -c 1"
+python mathtool.py
+python mathtool.py --help
+python mathtool.py solve --help
+python mathtool.py stats --help
+python mathtool.py series --help
+python mathtool.py integrate --help
+python mathtool.py solve -a 1 -b -3 -c 2
+python mathtool.py solve -c 2 -a 1 -b -3
+python mathtool.py solve -a 1 -b -2 -c 1
+python mathtool.py solve -a 1 -b 0 -c 5
+python mathtool.py solve -a 0 -b 2 -c -5
+python mathtool.py solve -a 0 -b 0 -c 7
+python mathtool.py solve -a 50000 -b 1 -c 1
+python mathtool.py solve -a 1 -b 50000 -c 1
+python mathtool.py solve -a 1 -b 1 -c 50000
+python mathtool.py badcmd
+python mathtool.py solve -x 1 -b -3 -c 2
+python mathtool.py stats --input numbers.txt
+python mathtool.py series --func sqplus --terms 6
+python mathtool.py series --func sqplus --eps 0.0001
+python mathtool.py series --func third --eps 0.0001
+python mathtool.py integrate --func ratio --from 0 --to 20 --steps 1000
+python mathtool.py integrate --func ratio --from 5 --to 10 --steps 1000
+python mathtool.py integrate --func root --from -4.9 --to 4.9 --steps 1000
