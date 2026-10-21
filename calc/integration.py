@@ -5,11 +5,11 @@ MAX_STEPS = 100000
 DIGITS = 4
 
 def func_ratio(x): #Функция ratio: x / (x^2 + 1)
-    return x / (x * x + 1)
+    return x / (x + 1)
 
 
 def func_root(x): #Функция root: sqrt(x)
-    return math.sqrt(abs(x))
+    return math.sqrt(x * x + 1)
 
 
 #таблица функций: ключ имя, значение функция
