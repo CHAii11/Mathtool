@@ -2,19 +2,16 @@ import math
 
 MAX_VALUE = 10000
 
-#Проверяет коэффициенты что не превышают допустимый модуль дает ошибку если какой-то коэффициент вне диапазона
-def check_coefficients(a, b, c): 
-    if abs(a) > MAX_VALUE:
-        raise ValueError("Ошибка: коэффициент A вне допустимого диапазона")
-    if abs(b) > MAX_VALUE:
-        raise ValueError("Ошибка: коэффициент B вне допустимого диапазона")
-    if abs(c) > MAX_VALUE:
-        raise ValueError("Ошибка: коэффициент C вне допустимого диапазона")
+#Проверяет коэффициенты дает ошибку если какой-то коэффициент вне диапазона
+def check_coefficients(coefficients):
+    for name, value in coefficients.items():
+        if abs(value) > MAX_VALUE:
+            raise ValueError(f"Ошибка: коэффициент {name} вне допустимого диапазона")
 
 #Решает уравнение. дает ошибку при недопустимых коэффициентах
 def solve(a, b, c):
     #проверяем данные
-    check_coefficients(a, b, c)
+    check_coefficients({"A": a, "B": b, "C": c})
 
     #линейное уравнение
     if a == 0:
