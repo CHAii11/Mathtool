@@ -1,5 +1,6 @@
 import argparse
 from calc import series
+from calc import integration
 
 def build_parser(): # Создаём главный разборщик
     parser = argparse.ArgumentParser(
@@ -42,7 +43,7 @@ def build_parser(): # Создаём главный разборщик
         "integrate",
         help="численное интегрирование методом левых прямоугольников",
         allow_abbrev=False)
-    integrate_parser.add_argument("--func", required=True, help="имя функции (ratio, root)")
+    integrate_parser.add_argument("--func", required=True, choices=sorted(integration.FUNCTIONS), help="имя функции")
     integrate_parser.add_argument("--from", dest="start", type=float, required=True,
                                   help="нижний предел интегрирования")
     integrate_parser.add_argument("--to", type=float, required=True,

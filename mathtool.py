@@ -4,6 +4,7 @@ from calc import equation
 from cli import build_parser
 from calc import stats
 from calc import series
+from calc import integration
 
 def handle_solve(args): #Обработчик команды solve
     # проверяем: либо все три коэффициента, либо ни одного
@@ -76,6 +77,19 @@ def handle_series(args):
     
     return 0
 
+def handle_integrate(args):
+    #Обработчик команды integrate
+    func = integration.FUNCTIONS[args.func]
+    
+    if not (1 <= args.steps <= integration.MAX_STEPS):
+        raise ValueError("число шагов вне диапазона")
+    
+    result = integration.integrate(func, args.start, args.upper, args.steps)
+    
+    print(f"Интеграл: {result:.{integration.DIGITS}f}")
+    
+    return 0
+
 def main(argv): #Главная функция приложения. Возвращает код завершения
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -92,6 +106,8 @@ def main(argv): #Главная функция приложения. Возвр�
             return handle_stats(args)
         elif args.command == "series":
             return handle_series(args)
+        elif args.command == "integrate":
+            return handle_integrate(args)
 
 
         else:
