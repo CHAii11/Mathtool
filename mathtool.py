@@ -1,6 +1,7 @@
 import sys
 from calc import equation
 from cli import build_parser
+from calc import stats
 
 def handle_solve(args): #Обработчик команды solve
     # проверяем: либо все три коэффициента, либо ни одного
@@ -37,6 +38,18 @@ def handle_solve(args): #Обработчик команды solve
     
     return 0
 
+def handle_stats(args): #Обработчик команды stats
+    numbers = stats.read_numbers(args.input)
+    
+    for label, function, form in stats.REPORT:
+        value = function(numbers)
+        if value is None:
+            print(f"{label}: НЕ СУЩЕСТВУЕТ")
+        else:
+            print(f"{label}: {value:{form}}")
+    
+    return 0
+
 def main(argv): #Главная функция приложения. Возвращает код завершения
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -49,6 +62,9 @@ def main(argv): #Главная функция приложения. Возвр�
     try:
         if args.command == "solve":
             return handle_solve(args)
+        elif args.command == "stats":
+            return handle_stats(args)
+
         else:
             print(f'Ошибка: команда {args.command} ещё не реализована', file=sys.stderr)
             return 1
