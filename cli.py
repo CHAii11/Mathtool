@@ -1,4 +1,5 @@
 import argparse
+from calc import series
 
 def build_parser(): # Создаём главный разборщик
     parser = argparse.ArgumentParser(
@@ -30,7 +31,7 @@ def build_parser(): # Создаём главный разборщик
         "series",
         help="сумма знакочередующегося ряда",
         allow_abbrev=False)
-    series_parser.add_argument("--func", required=True, help="имя ряда (sqplus, third)")
+    series_parser.add_argument("--func", required=True, choices=sorted(series.FORMULAS), help="имя ряда")
     # Группа ровно один из --terms или --eps
     group = series_parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--terms", type=int, help="количество слагаемых (от 1 до 10000)")

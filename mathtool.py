@@ -1,7 +1,9 @@
+import math
 import sys
 from calc import equation
 from cli import build_parser
 from calc import stats
+from calc import series
 
 def handle_solve(args): #Обработчик команды solve
     # проверяем: либо все три коэффициента, либо ни одного
@@ -50,6 +52,30 @@ def handle_stats(args): #Обработчик команды stats
     
     return 0
 
+def handle_series(args):
+    #Обработчик команды series
+    # получаем функцию слагаемого и формулу из таблицы
+    term_func, formula = series.FORMULAS[args.func]
+    
+    # проверка параметров
+    if args.terms is not None:
+        if not (1 <= args.terms <= series.MAX_TERMS):
+            raise ValueError("количество слагаемых вне диапазона")
+        count = args.terms
+        total = series.sum_by_terms(term_func, count)
+    else:
+        eps = args.eps
+        if not (math.isfinite(eps) and 0 < eps <= series.MAX_EPS):
+            raise ValueError("точность вне диапазона")
+        total, count = series.sum_by_eps(term_func, eps)
+    
+    # вывод результата
+    print(formula)
+    print(f"Слагаемых: {count}")
+    print(f"Сумма ряда: {total:.{series.DIGITS}f}")
+    
+    return 0
+
 def main(argv): #Главная функция приложения. Возвращает код завершения
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -64,6 +90,9 @@ def main(argv): #Главная функция приложения. Возвр�
             return handle_solve(args)
         elif args.command == "stats":
             return handle_stats(args)
+        elif args.command == "series":
+            return handle_series(args)
+
 
         else:
             print(f'Ошибка: команда {args.command} ещё не реализована', file=sys.stderr)
