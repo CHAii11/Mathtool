@@ -1,3 +1,4 @@
+#Решение уравнений
 import math
 
 MAX_VALUE = 10000

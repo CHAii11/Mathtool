@@ -6,9 +6,9 @@ def build_parser(): # Создаём главный разборщик
     parser = argparse.ArgumentParser(
         prog="mathtool",
         description="mathtool — решение уравнений и обработка числовых рядов",
-        allow_abbrev=False)  # запрещаем сокращения параметров
+        allow_abbrev=False)  # запрещаем сокращения параметров, запрещаем угадывать
     
-    # Создаём набор подкоманд
+    # Создаём набор подкоманд 4 штуки
     subparsers = parser.add_subparsers(dest="command")
     
     # Команда solve
@@ -32,9 +32,9 @@ def build_parser(): # Создаём главный разборщик
         "series",
         help="сумма знакочередующегося ряда",
         allow_abbrev=False)
-    series_parser.add_argument("--func", required=True, choices=sorted(series.FORMULAS), help="имя ряда")
+    series_parser.add_argument("--func", required=True, choices=sorted(series.FORMULAS), help="имя ряда") #смотрит в математический модуль series.py, берёт оттуда ключи доступных рядов и автоматически проверяет их
     # Группа ровно один из --terms или --eps
-    group = series_parser.add_mutually_exclusive_group(required=True)
+    group = series_parser.add_mutually_exclusive_group(required=True) #пользователь обязан выбрать 1 из 2 вариантов - считать по количеству слагаемых --terms, считать до определенной точности (--eps). Выбрать 2 или не выбрать ни одного нельзя
     group.add_argument("--terms", type=int, help="количество слагаемых (от 1 до 10000)")
     group.add_argument("--eps", type=float, help="точность (0 < eps <= 0.0001)")
     
@@ -44,7 +44,7 @@ def build_parser(): # Создаём главный разборщик
         help="численное интегрирование методом левых прямоугольников",
         allow_abbrev=False)
     integrate_parser.add_argument("--func", required=True, choices=sorted(integration.FUNCTIONS), help="имя функции")
-    integrate_parser.add_argument("--from", dest="start", type=float, required=True,
+    integrate_parser.add_argument("--from", dest="start", type=float, required=True,  #программа переименовывает это значение в start
                                   help="нижний предел интегрирования")
     integrate_parser.add_argument("--to", type=float, required=True,
                                   help="верхний предел интегрирования")

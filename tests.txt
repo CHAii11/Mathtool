@@ -4,6 +4,9 @@ python mathtool.py solve --help
 python mathtool.py stats --help
 python mathtool.py series --help
 python mathtool.py integrate --help
+python mathtool.py badcmd
+
+python mathtool.py solve
 python mathtool.py solve -a 1 -b -3 -c 2
 python mathtool.py solve -c 2 -a 1 -b -3
 python mathtool.py solve -a 1 -b -2 -c 1
@@ -11,14 +14,34 @@ python mathtool.py solve -a 1 -b 0 -c 5
 python mathtool.py solve -a 0 -b 2 -c -5
 python mathtool.py solve -a 0 -b 0 -c 7
 python mathtool.py solve -a 50000 -b 1 -c 1
-python mathtool.py solve -a 1 -b 50000 -c 1
-python mathtool.py solve -a 1 -b 1 -c 50000
-python mathtool.py badcmd
+python mathtool.py solve -a abc -b 1 -c 1
 python mathtool.py solve -x 1 -b -3 -c 2
+python mathtool.py solve -a 1 -b 2
+
 python mathtool.py stats --input numbers.txt
+python mathtool.py stats --input nosuch.txt
+python mathtool.py stats
+
+python mathtool.py series --func sqplus --terms 1
 python mathtool.py series --func sqplus --terms 6
+python mathtool.py series --func sqplus --terms 10000
+python mathtool.py series --func sqplus --terms 10001
+python mathtool.py series --func sqplus --terms 0
 python mathtool.py series --func sqplus --eps 0.0001
+python mathtool.py series --func sqplus --eps 0.001
+python mathtool.py series --func sqplus --eps 0
 python mathtool.py series --func third --eps 0.0001
+python mathtool.py series --func third --eps 0.000001
+python mathtool.py series --func sqplus --terms 6 --eps 0.0001
+python mathtool.py series --func sqplus
+
+python mathtool.py integrate --func ratio --from 0 --to 20 --steps 10
 python mathtool.py integrate --func ratio --from 0 --to 20 --steps 1000
+python mathtool.py integrate --func ratio --from 0 --to 20 --steps 10000
+python mathtool.py integrate --func ratio --from 0 --to 20 --steps 100001
+python mathtool.py integrate --func ratio --from 0 --to 20 --steps 0
 python mathtool.py integrate --func ratio --from 5 --to 10 --steps 1000
+python mathtool.py integrate --func ratio --from 4 --to 1 --steps 100
+python mathtool.py integrate --func ratio --from 0 --to nan --steps 100
 python mathtool.py integrate --func root --from -4.9 --to 4.9 --steps 1000
+python mathtool.py integrate --func root --from -5 --to 5 --steps 100

@@ -53,8 +53,7 @@ def handle_stats(args): #Обработчик команды stats
     
     return 0
 
-def handle_series(args):
-    #Обработчик команды series
+def handle_series(args): #Обработчик команды series
     # получаем функцию слагаемого и формулу из таблицы
     term_func, formula = series.FORMULAS[args.func]
     
@@ -77,8 +76,7 @@ def handle_series(args):
     
     return 0
 
-def handle_integrate(args):
-    #Обработчик команды integrate
+def handle_integrate(args): #Обработчик команды integrate
     func = integration.FUNCTIONS[args.func]
     
     if not (1 <= args.steps <= integration.MAX_STEPS):
